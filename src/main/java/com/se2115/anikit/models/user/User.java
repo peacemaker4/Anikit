@@ -1,6 +1,6 @@
 package com.se2115.anikit.models.user;
 
-import com.se2115.anikit.interfaces.IObserver;
+import com.se2115.anikit.interfaces.observer.IObserver;
 
 public class User implements IObserver {
     private int id;

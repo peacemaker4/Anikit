@@ -30,7 +30,7 @@ public class AllAnimeServlet extends HttpServlet {
             request.setAttribute("list_sub", list_sub);
         }
         request.setAttribute("list", list);
-        request.getRequestDispatcher("anime_list.jsp").forward(request, response);
+        request.getRequestDispatcher("anime.jsp").forward(request, response);
     }
 
     public void destroy() {

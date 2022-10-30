@@ -1,7 +1,7 @@
 package com.se2115.anikit.models.anime;
 
-import com.se2115.anikit.interfaces.IObservable;
-import com.se2115.anikit.interfaces.IObserver;
+import com.se2115.anikit.interfaces.observer.IObservable;
+import com.se2115.anikit.interfaces.observer.IObserver;
 
 import java.util.ArrayList;
 

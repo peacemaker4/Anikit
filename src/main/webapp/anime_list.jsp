@@ -6,7 +6,6 @@
 <html>
 <head>
     <title>Anime list</title>
-    <%@include file="components/bootstrap.jsp"%>
     <%@include file="components/stylesheets.jsp"%>
 </head>
 <body>
