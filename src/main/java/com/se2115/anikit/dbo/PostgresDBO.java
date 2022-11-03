@@ -1,9 +1,6 @@
 package com.se2115.anikit.dbo;
 
-import com.se2115.anikit.models.anime.Anime;
-import com.se2115.anikit.models.anime.AnnouncedState;
-import com.se2115.anikit.models.anime.FinishedState;
-import com.se2115.anikit.models.anime.OngoingState;
+import com.se2115.anikit.models.anime.*;
 import com.se2115.anikit.models.user.User;
 
 import java.sql.*;
@@ -67,27 +64,27 @@ public class PostgresDBO implements DBOStrategy{
     }
 
     public Anime getAnimeById(String anime_id){
-        Anime anime = new Anime();
+        AnimeBuilder animeBuilder = new AnimeBuilder();
         try (PreparedStatement statement = connection.prepareStatement("Select * from anime where id = ? limit 1")){
             statement.setInt(1, Integer.parseInt(anime_id));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                anime.setId(resultSet.getInt(1));
-                anime.setTitle(resultSet.getString("title"));
-                anime.setDescription(resultSet.getString("description"));
+                animeBuilder.setId(resultSet.getInt(1));
+                animeBuilder.setTitle(resultSet.getString("title"));
+                animeBuilder.setDescription(resultSet.getString("description"));
                 String state = resultSet.getString("state");
                 switch (state){
                     case "Announced":
-                        anime.setState(new AnnouncedState());
+                        animeBuilder.setState(new AnnouncedState());
                         break;
                     case "Ongoing":
-                        anime.setState(new OngoingState());
+                        animeBuilder.setState(new OngoingState());
                         break;
                     case "Finished":
-                        anime.setState(new FinishedState());
+                        animeBuilder.setState(new FinishedState());
                         break;
                 }
-                anime.setCover(resultSet.getString("cover"));
+                animeBuilder.setCover(resultSet.getString("cover"));
             }
         }
         catch (NullPointerException ex){
@@ -96,7 +93,7 @@ public class PostgresDBO implements DBOStrategy{
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return anime;
+        return animeBuilder.getAnime();
     }
 
     public void addAnime(Anime new_anime){

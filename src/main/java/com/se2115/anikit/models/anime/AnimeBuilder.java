@@ -6,6 +6,11 @@ public class AnimeBuilder implements ProjectBuilder {
     private Anime anime;
 
     @Override
+    public void setId(int id) {
+        anime.setId(id);
+    }
+
+    @Override
     public void setTitle(String title) {
         anime.setTitle(title);
     }
