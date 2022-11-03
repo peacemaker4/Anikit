@@ -12,7 +12,7 @@
     <%@include file="components/stylesheets.jsp"%>
   </head>
 
-  <body class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "bg-light" : "bg-dark"%>">
+  <body class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "bg-light" : "bg-black"%>">
 
   <%@include file="components/navbar.jsp"%>
 
@@ -26,7 +26,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <h6 class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-primary"%>">ANIKIT</h6>
-                    <h2 class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Watch anime with maximum comfort</h2>
+                    <h2 class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-primary"%>">Watch anime with maximum comfort</h2>
                     <p>Our site will help you choose anime according to your preferences.</p>
                   </div>
                   <div class="col-lg-12">

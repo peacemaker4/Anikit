@@ -9,7 +9,7 @@
 <div>
     <%@include file="components/navbar.jsp"%>
 
-    <div class="card bg-black mt-3" >
+    <div class="card bg-light mt-3" >
         <div class="card-header text-primary text-center p-4">
             <h3>Add Anime</h3>
         </div>

@@ -1287,7 +1287,7 @@ Services Style
 
 .services:after {
   content: '';
-  background-image: url(../images/services-left-dec.jpg);
+  background: black;
   background-repeat: no-repeat;
   position: absolute;
   left: 0;
