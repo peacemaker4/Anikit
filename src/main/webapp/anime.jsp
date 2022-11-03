@@ -52,6 +52,22 @@
                 <h5 class="card-title"><%=anime.getTitle()%></h5>
                 <p class="card-text text-truncate"><%=anime.getDescription()%></p>
               </div>
+              <% if (request.getSession().getAttribute("user_id") != null) {%>
+              <li class="list-group-item">
+                <form method="post" action="subscribe">
+                  <input name="anime_id" value="<%=anime.getId()%>" hidden>
+                  <% if(((ArrayList<Integer>) request.getAttribute("list_sub")).contains(anime.getId())){ %>
+                  <div class="btn btn-success rounded-pill">
+                    Subscribed
+                  </div>
+                  <% } else {%>
+                  <button class="btn btn-danger rounded-pill">
+                    Subscribe +
+                  </button>
+                  <% } %>
+                </form>
+              </li>
+              <%}%>
             </div>
           </div>
         <%}%>
