@@ -1,5 +1,6 @@
 package com.se2115.anikit.servlets;
 
+import com.se2115.anikit.interfaces.proxy.UserProxyImpl;
 import com.se2115.anikit.models.user.User;
 import com.se2115.anikit.services.DBService;
 import com.se2115.anikit.services.UserService;
@@ -43,7 +44,10 @@ public class LoginServlet extends HttpServlet {
         if(user != null){
             if(email.equals(user.getEmail()) && password.equals(user.getPassword())){
                 HttpSession userSession = request.getSession();
-                userSession.setAttribute("user_id", user.getId());
+                UserProxyImpl proxy = new UserProxyImpl(true);
+                proxy.setUser(user);
+                User auth_user = proxy.getUser();
+                userSession.setAttribute("user_id", auth_user.getId());
                 response.sendRedirect("index");
             }
             else{

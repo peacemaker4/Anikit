@@ -1,11 +1,12 @@
 package com.se2115.anikit.models.anime;
 
+import com.se2115.anikit.interfaces.builder.AnimeBuilder;
 import com.se2115.anikit.interfaces.observer.IObservable;
 import com.se2115.anikit.interfaces.observer.IObserver;
 
 import java.util.ArrayList;
 
-public class Anime implements IObservable {
+public class Anime implements IObservable, AnimeBuilder {
     private int id;
     private String title;
     private String description;

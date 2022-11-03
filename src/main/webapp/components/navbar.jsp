@@ -15,19 +15,19 @@
 
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-<%--                        <li class="scroll-to-section">--%>
-<%--                            <form action="theme" method="post">--%>
-<%--                                <% if(MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme")){ %>--%>
-<%--                                    <button class="btn border border-rounded">--%>
-<%--                                        <i class="fa-solid fa-sun"></i>--%>
-<%--                                    </button>--%>
-<%--                                <% } else if(MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("DarkTheme")){ %>--%>
-<%--                                    <button class="btn bg-dark border border-rounded text-light">--%>
-<%--                                        <i class="fa-solid fa-moon"></i>--%>
-<%--                                    </button>--%>
-<%--                                <% } %>--%>
-<%--                            </form>--%>
-<%--                        </li>--%>
+                        <li class="scroll-to-section">
+                            <form action="theme" method="post">
+                                <% if(MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme")){ %>
+                                    <button class="btn border border-rounded">
+                                        <i class="fa-solid fa-sun"></i>
+                                    </button>
+                                <% } else if(MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("DarkTheme")){ %>
+                                    <button class="btn bg-dark border border-rounded text-light">
+                                        <i class="fa-solid fa-moon"></i>
+                                    </button>
+                                <% } %>
+                            </form>
+                        </li>
                         <li class="scroll-to-section"><a href="index" class="active">Home</a></li>
                         <li class="scroll-to-section"><a href="#about" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">About Us</a></li>
                         <li class="scroll-to-section"><a href="anime_list" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Watch anime</a></li>
