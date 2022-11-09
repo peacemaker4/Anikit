@@ -85,6 +85,7 @@ public class PostgresDBO implements DBOStrategy{
                         break;
                 }
                 animeBuilder.setCover(resultSet.getString("cover"));
+                animeBuilder.setUserId(resultSet.getInt("user_id"));
             }
         }
         catch (NullPointerException ex){
@@ -97,11 +98,34 @@ public class PostgresDBO implements DBOStrategy{
     }
 
     public void addAnime(Anime new_anime){
-        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO anime(title, description, state, cover) values (?, ?, ?, ?)")){
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO anime(title, description, state, cover, user_id) values (?, ?, ?, ?, ?)")){
             statement.setString(1, new_anime.getTitle());
             statement.setString(2, new_anime.getDescription());
             statement.setString(3, new_anime.getState());
             statement.setString(4, new_anime.getCover());
+            statement.setInt(5, new_anime.getUser_id());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void updateAnime(Anime upd_anime){
+        try (PreparedStatement statement = connection.prepareStatement("UPDATE anime SET title = ?, description = ?, state = ?, cover = ? WHERE id = ?")){
+            statement.setString(1, upd_anime.getTitle());
+            statement.setString(2, upd_anime.getDescription());
+            statement.setString(3, upd_anime.getState());
+            statement.setString(4, upd_anime.getCover());
+            statement.setInt(5, upd_anime.getId());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteAnime(int id){
+        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM anime WHERE id = ?")){
+            statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -113,24 +137,25 @@ public class PostgresDBO implements DBOStrategy{
         try (PreparedStatement statement = connection.prepareStatement("Select * from anime")){
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                Anime anime = new Anime();
-                anime.setId(resultSet.getInt(1));
-                anime.setTitle(resultSet.getString("title"));
-                anime.setDescription(resultSet.getString("description"));
+                AnimeBuilder animeBuilder = new AnimeBuilder();
+                animeBuilder.setId(resultSet.getInt(1));
+                animeBuilder.setTitle(resultSet.getString("title"));
+                animeBuilder.setDescription(resultSet.getString("description"));
                 String state = resultSet.getString("state");
                 switch (state){
                     case "Announced":
-                        anime.setState(new AnnouncedState());
+                        animeBuilder.setState(new AnnouncedState());
                         break;
                     case "Ongoing":
-                        anime.setState(new OngoingState());
+                        animeBuilder.setState(new OngoingState());
                         break;
                     case "Finished":
-                        anime.setState(new FinishedState());
+                        animeBuilder.setState(new FinishedState());
                         break;
                 }
-                anime.setCover(resultSet.getString("cover"));
-                anime_list.add(anime);
+                animeBuilder.setCover(resultSet.getString("cover"));
+                animeBuilder.setUserId(resultSet.getInt("user_id"));
+                anime_list.add(animeBuilder.getAnime());
             }
         }
         catch (NullPointerException ex){
@@ -144,6 +169,16 @@ public class PostgresDBO implements DBOStrategy{
 
     public void addSubscriber(Integer anime_id, Integer user_id){
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO subscribers(anime_id, user_id) values (?, ?)")){
+            statement.setInt(1, anime_id);
+            statement.setInt(2, user_id);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void removeSubscriber(Integer anime_id, Integer user_id){
+        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM subscribers WHERE anime_id = ? AND user_id = ?")){
             statement.setInt(1, anime_id);
             statement.setInt(2, user_id);
             statement.executeUpdate();

@@ -26,6 +26,16 @@ public class AnimeService implements DBService{
     }
 
     @Override
+    public void updateObject(Object obj) {
+        dbManager.updateAnime((Anime) obj);
+    }
+
+    @Override
+    public void deleteObject(int id) {
+        dbManager.deleteAnime(id);
+    }
+
+    @Override
     public ArrayList<Object> getAll() {
         return dbManager.getAllAnime();
     }
@@ -33,4 +43,5 @@ public class AnimeService implements DBService{
     public ArrayList<Integer> getAllSubAnime(String user_id) {
         return dbManager.getAnimeIdBySubscriber(user_id);
     }
+
 }

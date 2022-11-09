@@ -1,6 +1,5 @@
 package com.se2115.anikit.servlets;
 
-import com.se2115.anikit.models.user.User;
 import com.se2115.anikit.services.DBService;
 import com.se2115.anikit.services.UserService;
 
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/subscribe")
-public class SubscribeServlet extends HttpServlet {
+@WebServlet(value = "/unsubscribe")
+public class UnsubscribeServlet extends HttpServlet {
 
     private DBService dbService;
 
@@ -31,7 +30,7 @@ public class SubscribeServlet extends HttpServlet {
         String anime_id = request.getParameter("anime_id");
 
         if(user_id != null && anime_id != null){
-            ((UserService)dbService).subscribe(Integer.parseInt(anime_id), Integer.parseInt(user_id));
+            ((UserService)dbService).unsubscribe(Integer.parseInt(anime_id), Integer.parseInt(user_id));
             response.sendRedirect("subbed_anime_list");
         }
     }

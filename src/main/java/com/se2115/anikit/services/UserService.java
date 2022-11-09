@@ -26,12 +26,23 @@ public class UserService implements DBService{
     }
 
     @Override
+    public void updateObject(Object obj) {
+    }
+
+    @Override
+    public void deleteObject(int id) {
+    }
+
+    @Override
     public ArrayList<Object> getAll() {
         return null;
     }
 
     public void subscribe(Integer anime_id, Integer user_id){
         dbManager.addSubscriber(anime_id, user_id);
+    }
+    public void unsubscribe(Integer anime_id, Integer user_id){
+        dbManager.removeSubscriber(anime_id, user_id);
     }
 
 }

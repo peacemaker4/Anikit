@@ -10,6 +10,7 @@ public class Anime implements IObservable {
     private String title;
     private String description;
     private String cover;
+    private int user_id;
 
     private ArrayList<IObserver> _observers;
 
@@ -54,6 +55,11 @@ public class Anime implements IObservable {
     public String getCover() {
         return cover;
     }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -68,6 +74,10 @@ public class Anime implements IObservable {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -91,4 +101,18 @@ public class Anime implements IObservable {
             obs.Update(news);
         }
     }
+
+    public Object clone() {
+        Object clone = null;
+
+        try {
+            clone = super.clone();
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return clone;
+    }
+
 }

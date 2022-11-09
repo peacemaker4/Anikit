@@ -8,4 +8,5 @@ public interface ProjectBuilder {
     void setDescription(String description);
     void setCover(String cover);
     void setState(AnimeState state);
+    void setUserId(int user_id);
 }

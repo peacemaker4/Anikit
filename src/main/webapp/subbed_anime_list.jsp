@@ -27,20 +27,24 @@
             <div class="col-lg-12">
                 <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
                     <h6>Anime</h6>
-                    <h4>List <em>To Watch</em></h4>
+                    <h4>List <em class="text-danger">Favourite</em></h4>
                     <div class="line-dec"></div>
                 </div>
             </div>
         </div>
     </div>
     <% List<Object> list = (ArrayList<Object>) request.getAttribute("list"); %>
-    <% if (list.isEmpty()) {%>
-    <h1 class="mt-3">Anime list is empty</h1>
+    <% List<Integer> list_sub = (ArrayList<Integer>) request.getAttribute("list_sub"); %>
+    <% if (request.getSession().getAttribute("user_id") != null) {%>
+
+    <% if (list_sub.isEmpty()) {%>
+    <h1 class="mt-3">You're not subscribed to any anime</h1>
     <% } else {%>
     <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
         <div class="row row-cols-1 row-cols-md-6 g-9">
             <% for (Object ob: list) {%>
             <% Anime anime = (Anime)ob; %>
+            <% if (list_sub.contains(anime.getId())) { %>
             <div class="col">
                 <div class="card">
                     <% if(anime.getCover().isEmpty()) {%>
@@ -55,10 +59,12 @@
 
                 </div>
             </div>
+            <% } %>
             <%}%>
 
         </div>
     </div>
+    <%}%>
     <%}%>
 </div>
 

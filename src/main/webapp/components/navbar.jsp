@@ -32,10 +32,11 @@
                         <li class="scroll-to-section"><a href="#about" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">About Us</a></li>
                         <li class="scroll-to-section"><a href="anime_list" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Watch anime</a></li>
                         <li class="scroll-to-section"><a href="#portfolio" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Anikit suggests</a></li>
-                        <li class="scroll-to-section"><a href="#contact" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Contacts</a></li>
                         <% if(request.getSession().getAttribute("user_id") == null){  %>
-                                <li class="scroll-to-section"><div class="border-first-button"><a href="login">LOGIN</a></div></li>
+                            <li class="scroll-to-section"><a href="#contact" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Contacts</a></li>
+                            <li class="scroll-to-section"><div class="border-first-button"><a href="login">LOGIN</a></div></li>
                         <% } else { %>
+                            <li class="scroll-to-section"><a href="subbed_anime_list" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Favourite <i class="fa-solid fa-heart"></i></a></li>
                             <li class="scroll-to-section"><a href="add_anime" class="<%=MainSite.getInstance().getSite_theme().getClass().getSimpleName().equalsIgnoreCase("LightTheme") ? "" : "text-light"%>">Add anime</a></li>
                             <li class="scroll-to-section"><div class="border-first-button"><a href="logout">LOGOUT</a></div></li>
                         <%}%>
